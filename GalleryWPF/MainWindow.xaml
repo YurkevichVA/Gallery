@@ -1,0 +1,54 @@
+﻿<Window x:Class="GalleryWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GalleryWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="auto" Width="auto" WindowState="Maximized" Background="Pink">
+    <Window.Resources>
+        <ResourceDictionary Source="Theme.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <MediaElement DataContext="{Binding SelectedPhoto}" Source="{Binding Path=Path}"/>
+        <WrapPanel Width="auto" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.RowSpan="2">
+            <Button Name="toStartBtn" Width="100" Height="50" Content="На початок" Click="toStartBtn_Click" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Name="prevBtn" Width="100" Height="50" Content="Попереднє" Click="prevBtn_Click" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Name="nextBtn" Width="100" Height="50" Content="Наступне" Click="nextBtn_Click" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Name="toEndBtn" Width="100" Height="50" Content="В кінець" Click="toEndBtn_Click" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </WrapPanel>
+        <StackPanel>
+            <GroupBox HorizontalAlignment="Right" VerticalAlignment="Top" Width="300" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Інформація" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <TextBlock Text="Назва: " Grid.Row="1" Grid.Column="0"/>
+                    <TextBlock Text="{Binding Name}" Grid.Row="1" Grid.Column="1"/>
+                    <TextBlock Text="Дата: " Grid.Row="2" Grid.Column="0"/>
+                    <TextBlock Text="{Binding Date}" Grid.Row="2" Grid.Column="1"/>
+                    <TextBlock Text="Автор: " Grid.Row="3" Grid.Column="0"/>
+                    <TextBlock Text="{Binding Author}" Grid.Row="3" Grid.Column="1"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
+                <StackPanel>
+                    <TextBlock Text="Оцінка:"></TextBlock>
+                    <RadioButton Name="fiveRB" Content="5 (Дивовижно)" Checked="changeRate_Checked"></RadioButton>
+                    <RadioButton Name="fourRB" Content="4 (Гарно)" Checked="changeRate_Checked"></RadioButton>
+                    <RadioButton Name="threeRB" Content="3 (Нормально)" Checked="changeRate_Checked"></RadioButton>
+                    <RadioButton Name="twoRB" Content="2 (Погано)" Checked="changeRate_Checked"></RadioButton>
+                    <RadioButton Name="oneRB" Content="1 (Русняво)" Checked="changeRate_Checked"></RadioButton>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>
